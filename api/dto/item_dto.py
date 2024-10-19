@@ -5,7 +5,7 @@ class ItemCreateDto(BaseModel):
     price: float
 
     model_config = {
-        'from_attributes': True  # Включает поддержку ORM объектов
+        'from_attributes': True 
     }
 
 class ItemResponseDto(BaseModel):
@@ -14,5 +14,5 @@ class ItemResponseDto(BaseModel):
     price: float
 
     model_config = {
-        'from_attributes': True  # Включает поддержку ORM объектов
+        'from_attributes': True 
     }

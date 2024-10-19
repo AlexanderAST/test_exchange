@@ -4,6 +4,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from api.database import Base
 from api.domain.item_model import ItemModel
+from api.domain.currency_model import CurrencyModel
 
 from alembic import context
 
