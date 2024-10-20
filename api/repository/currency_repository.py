@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from api.domain.currency_model import CurrencyModel
 from api.dto.currency_dto import CurrencyCreateDto
+from sqlalchemy import select
 
 
 class CurrencyRepository:
@@ -18,3 +19,9 @@ class CurrencyRepository:
         await db.commit()
         await db.refresh(new_currency)
         return new_currency
+    
+    async def get_currency(self, db: AsyncSession, date: str):
+        query = select(CurrencyModel).where(CurrencyModel.last_update == date)
+        result = await db.execute(query)
+        
+        return result.scalars().all()

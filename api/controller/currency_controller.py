@@ -20,3 +20,14 @@ async def create_currency(db: AsyncSession = Depends(get_db)):
    
    except HTTPException as e:
       raise HTTPException(status_code=500, detail=str(e))
+   
+
+@router.get("/currency/{date}")
+async def currency(date:str, db: AsyncSession = Depends(get_db)):
+   try:
+      result = await currency_service.currency(date, db)
+      return {"currencies": result}
+   except HTTPException as e:
+      raise e
+   except Exception as e:
+      raise HTTPException(status_code=500, detail=str(e))

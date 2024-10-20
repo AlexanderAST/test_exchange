@@ -44,3 +44,11 @@ class CurrencyService:
             raise HTTPException(status_code=e.response.status_code, detail=f"HTTP error: {e.response.text}")
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+        
+    async def currency (self, date: str, db: AsyncSession):
+        try:
+            result = await self.currency_repository.get_currency(db, date)
+            
+            return result
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"cannot take currency from this date: {date}, {str(e)}")
